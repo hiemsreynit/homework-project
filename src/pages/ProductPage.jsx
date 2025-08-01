@@ -20,7 +20,9 @@ export default function ProductPage() {
 
   const { data, isLoading, error } = useGetProductQuery();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <div className="h-screen flex items-center justify-center">
+    <p>Loading...</p>
+  </div>;
   if (error) return <P>Something went wrong!</P>;
 
 
@@ -72,18 +74,8 @@ export default function ProductPage() {
           </Link>
         ))}
       </section> */}
-      {
-        data.products.map((product) => (
-          <DataTableComponent
-            key={product.id}
-            image={product.thumbnail}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-            tags={product.tags}
-          />
-        ))
-      }
+      <DataTableProduct/>
+      {/* <DataTableComponent props={data.products} /> */}
       {/* <DataTableComponent data={data} /> */}
       
     </>

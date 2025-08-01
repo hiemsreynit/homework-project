@@ -30,7 +30,7 @@ export default function HomePage() {
         </figure>
       </section>
       <section className="flex justify-center w-full">
-        <CreateProductFormComponent />
+        {/* <CreateProductFormComponent /> */}
       </section>
     </>
   );

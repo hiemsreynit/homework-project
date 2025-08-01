@@ -20,11 +20,21 @@ const columns = [
 
     {
         name: 'Price',
-        selector: row => row.price
+        selector: row => row.price,
+        sortable: true,
     },
     {
         name: 'Tags',
         selector: row => row.tags
+    },
+    {
+        name: 'Action',
+        cell: row => (
+            <a href={`/product/${row.id}`} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                View
+            </a>
+
+        ),
     }
 ];
 
@@ -32,15 +42,15 @@ const columns = [
 
 export default function DataTableProduct() {
 
-    const { data = [] } = useGetProductQuery({
-        page: 1,
-        limit: 10
-    })
-    
+    const { data } = useGetProductQuery();
+
     return (
         <DataTable
             columns={columns}
-            data={data}
+            data={data.products || []}
+            pagination
+            fixedHeader
+            fixedHeaderScrollHeight="400px"
         />
     );
 };
